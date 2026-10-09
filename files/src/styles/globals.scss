@@ -1,0 +1,39 @@
+// I need
+// hosting
+// domain
+// contacts to other schools
+// build to download
+// translate
+// loading site
+
+@use 'sass:map';
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *; // <-- This fixes the undefined mixin error!
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font2;
+  background-color: $bg-dark;
+  color: $text-light;
+  overflow-x: hidden;
+}
+
+.page-container {
+  min-height: 100vh;
+  padding: 5rem 1rem 3rem 1rem; // Optimized mobile padding
+
+  @include respond-to('sm') {
+    padding: 6rem 2rem 4rem 2rem;
+  }
+}
+
+.full-screen-section {
+  min-height: 100dvh;
+  width: 100%;
+}

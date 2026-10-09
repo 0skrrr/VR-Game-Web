@@ -1,0 +1,147 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.site-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 0.75rem 1rem;
+  background-color: rgba($bg-dark, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($primary, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 100vw;
+  box-sizing: border-box;
+
+  @include respond-to('lg') {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  .navbar-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    @include respond-to('lg') {
+      width: auto;
+    }
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 1.75rem;
+      width: auto;
+      cursor: pointer;
+
+      @include respond-to('sm') {
+        height: 2rem;
+      }
+    }
+  }
+
+  // Hamburger Icon Styling using original primary color
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 60;
+
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: $primary;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &.open {
+      span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+
+    @include respond-to('lg') {
+      display: none;
+    }
+  }
+
+  // Navigation Links
+  .navbar-nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 0 1rem 0;
+    width: 100%;
+
+    &.mobile-open {
+      display: flex;
+    }
+
+    @include respond-to('lg') {
+      display: flex !important;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+      width: auto;
+      padding: 0;
+    }
+
+    .nav-btn {
+      padding: 0.75rem 1rem;
+      border-radius: $radius-md;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+
+      // Retained your exact accent color and muted text theme
+      background: $accent;
+      color: $text-muted;
+      width: 100%;
+
+      @include respond-to('lg') {
+        width: auto;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      &:hover {
+        background: $surface-dark;
+        color: #ffffff;
+      }
+
+      &.active {
+        background: $primary;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba($primary, 0.3);
+      }
+    }
+  }
+}

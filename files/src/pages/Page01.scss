@@ -1,0 +1,153 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page-01 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem;
+  width: 100%;
+  overflow-x: hidden; // Prevents any side-scrolling
+
+  @include respond-to('md') {
+    gap: 4rem;
+  }
+
+  .hero-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    padding-top: 1rem;
+    position: relative;
+    border-radius: $radius-lg;
+
+    @include respond-to('lg') { // Target large desktop screens for the side image layout
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      padding-top: 2rem;
+    }
+
+    .hero-logo-container {
+      display: none; // Completely hidden on phones and tablets
+
+      @include respond-to('lg') { // Only shown on standard desktop PC layouts
+        display: flex;
+        position: relative;
+        width: 50%;
+        height: auto;
+        justify-content: flex-end;
+      }
+
+      .hero-logo {
+        width: 45rem;
+        max-width: none;
+        height: auto;
+        object-fit: contain;
+        position: absolute;
+
+        // Moved higher up and right-aligned cleanly on desktop
+        right: -18rem;
+        top: -8rem; // Pushed higher up as requested
+        opacity: 1;
+      }
+    }
+  }
+
+  .hero-banner {
+    text-align: start;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.25rem;
+    z-index: 2; // Ensures text stays completely above background elements
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: $text-light;
+      line-height: 1.2;
+      font-family: $font1;
+
+      @include respond-to('md') {
+        font-size: 5rem;
+      }
+    }
+
+    .mission-statement {
+      font-size: 1rem;
+      color: $color03;
+      line-height: 1.5;
+      max-width: 100%;
+
+      @include respond-to('lg') {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 42vw;
+      }
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0 0 0;
+    width: 100%;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 8rem 0 0 0;
+    }
+
+    .stat-card {
+      @include glass-card;
+      padding: 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background-color: $color05;
+      border: 2px solid rgba($color02, 1);
+
+      @include respond-to('md') {
+        padding: 2rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 800;
+        color: $color02;
+
+        @include respond-to('md') {
+          font-size: 2.5rem;
+        }
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: $color03;
+        font-weight: 500;
+
+        @include respond-to('md') {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

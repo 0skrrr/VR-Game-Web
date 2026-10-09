@@ -1,0 +1,164 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page-03 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2.5rem;
+  width: 100%;
+  overflow-x: hidden;
+
+  @include respond-to('md') {
+    gap: 4rem;
+  }
+
+  .page-03-header {
+    text-align: center;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+
+    h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: $text-light;
+      font-family: $font1;
+      line-height: 1.2;
+
+      @include respond-to('md') {
+        font-size: 3.5rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      color: $color03;
+      line-height: 1.5;
+
+      @include respond-to('md') {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .oer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+
+    @include respond-to('sm') {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .oer-card {
+      @include glass-card;
+      padding: 1.5rem;
+      background-color: $color05;
+      border: 2px solid rgba($color02, 1);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+
+      @include respond-to('md') {
+        padding: 2rem;
+        gap: 1.5rem;
+      }
+
+      &:hover {
+        transform: translateY(-4px);
+        border-color: rgba($color02, 0.8);
+      }
+
+      .card-top {
+        display: flex;
+        justify-content: flex-start;
+
+        .oer-badge {
+          background: $color02;
+          color: $color05;
+          font-size: 0.7rem;
+          font-weight: 600;
+          padding: 0.2rem 0.6rem;
+          border-radius: 0.5rem;
+          border: 1px solid rgba($accent, 0.3);
+
+          @include respond-to('md') {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+          }
+        }
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+
+        h3 {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: $text-light;
+          font-family: $font1;
+
+          @include respond-to('md') {
+            font-size: 1.25rem;
+          }
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: $color03;
+          line-height: 1.5;
+
+          @include respond-to('md') {
+            font-size: 0.95rem;
+            line-height: 1.6;
+          }
+        }
+      }
+
+      .card-footer {
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba($color02, 0.5);
+
+        @include respond-to('md') {
+          padding-top: 1rem;
+        }
+
+        .oer-action-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 0.75rem 1rem;
+          background: $primary;
+          color: #ffffff;
+          font-size: 0.85rem;
+          font-weight: 600;
+          border-radius: 0.5rem;
+          text-decoration: none;
+          transition: opacity 0.2s ease;
+
+          @include respond-to('md') {
+            font-size: 0.9rem;
+          }
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}

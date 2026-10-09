@@ -1,0 +1,183 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page-02 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2.5rem;
+  width: 100%;
+  overflow-x: hidden;
+
+  @include respond-to('md') {
+    gap: 4rem;
+  }
+
+  .page-02-header {
+    text-align: center;
+    max-width: 750px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+
+    h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: $text-light;
+      font-family: $font1;
+      line-height: 1.2;
+
+      @include respond-to('md') {
+        font-size: 3.5rem;
+      }
+    }
+
+    p {
+      font-size: 1rem;
+      color: $color03;
+      line-height: 1.5;
+
+      @include respond-to('md') {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .about-content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .about-section {
+      @include glass-card;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background-color: $color05;
+      border: 2px solid rgba($color02, 1);
+
+      @include respond-to('md') {
+        padding: 2rem;
+      }
+
+      h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: $text-light;
+        font-family: $font1;
+
+        @include respond-to('md') {
+          font-size: 1.25rem;
+        }
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: $color03;
+        line-height: 1.5;
+
+        @include respond-to('md') {
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  .partners-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: $text-light;
+      font-family: $font1;
+      text-align: start;
+
+      @include respond-to('md') {
+        font-size: 1.75rem;
+      }
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      width: 100%;
+
+      @include respond-to('sm') {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .partner-card {
+        @include glass-card;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        background-color: $color05;
+        border: 2px solid rgba($color02, 1);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+
+        @include respond-to('md') {
+          padding: 1.5rem;
+        }
+
+        &:hover {
+          transform: translateY(-4px);
+          border-color: rgba($color02, 0.8);
+        }
+
+        .partner-flag {
+          font-size: 1.75rem;
+
+          @include respond-to('md') {
+            font-size: 2rem;
+          }
+        }
+
+        .partner-info {
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+
+          h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: $text-light;
+
+            @include respond-to('md') {
+              font-size: 1.05rem;
+            }
+          }
+
+          p {
+            font-size: 0.8rem;
+            color: $color03;
+            line-height: 1.4;
+
+            @include respond-to('md') {
+              font-size: 0.85rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

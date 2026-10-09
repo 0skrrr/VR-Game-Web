@@ -1,0 +1,106 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.language-dropdown-container {
+  position: relative;
+  display: inline-block;
+
+  .lang-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: $color05;
+    border: 1px solid $color02;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.2s ease, background 0.2s ease;
+    margin: 0 0 0 2rem;
+
+    &:hover {
+      border-color: $color02;
+      background: rgba($color05, 1);
+    }
+
+    .lang-flag {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .lang-code {
+      color: $text-light;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: $font-sans;
+    }
+
+    .arrow-icon {
+      color: $color03;
+      font-size: 0.6rem;
+      transition: transform 0.2s ease;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .lang-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 160px;
+    background: rgba($color05, 0.98);
+    border: 1px solid rgba($color02, 0.8);
+    border-radius: $radius-md;
+    padding: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+
+    .lang-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: transparent;
+      border: none;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s ease, color 0.15s ease;
+
+      .lang-flag {
+        font-size: 1.1rem;
+      }
+
+      .lang-name {
+        color: $color03;
+        font-size: 0.85rem;
+        font-weight: 600;
+        font-family: $font2;;
+      }
+
+      &:hover {
+        background: rgba($color02, 0.2);
+        .lang-name {
+          color: $text-light;
+        }
+      }
+
+      &.active {
+        background: $color02;
+        border: 1px solid rgba($primary, 0.3);
+        .lang-name {
+          color: $color05;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
