@@ -1,0 +1,183 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.page-06 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 3rem;
+
+  .page-06-header {
+    text-align: center;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: $text-light;
+      font-family: $font1;
+      line-height: 1.2;
+
+      @include respond-to('md') {
+        font-size: 3.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $color03;
+      line-height: 1.6;
+    }
+  }
+
+  .admin-form-card {
+    @include glass-card;
+    width: 100%;
+    padding: 2.5rem;
+    background-color: $color05;
+    border: 2px solid rgba($color02, 1);
+
+    .status-alert {
+      padding: 0.85rem 1rem;
+      border-radius: $radius-md;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+
+      &.success {
+        background: rgba($color01, 0.2);
+        color: $color02;
+        border: 1px solid rgba($color01, 0.5);
+      }
+
+      &.error {
+        background: rgba(239, 68, 68, 0.15);
+        color: #b23b4f;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+    }
+
+    .admin-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        label {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: $color03;
+        }
+
+        input[type="text"], select, textarea {
+          background: rgba($color05, 0.9);
+          border: 2px solid rgba($color02, 0.8);
+          border-radius: $radius-md;
+          padding: 0.75rem 1rem;
+          color: $color02;
+          font-family: $font2;
+          font-size: 0.95rem;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+
+          &:focus {
+            border-color: $color02;
+            box-shadow: 0 0 0 3px rgba($color02, 0.2);
+          }
+
+          &::placeholder {
+            color: rgba($color03, 0.5);
+          }
+        }
+
+        select {
+          cursor: pointer;
+        }
+
+        textarea {
+          resize: vertical;
+        }
+
+        /* Styled Custom File Upload Component */
+        .file-upload-wrapper {
+          position: relative;
+          width: 100%;
+
+          /* Hide original ugly file input */
+          input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+          }
+
+          /* Custom styled button representation */
+          .file-upload-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: rgba($color05, 0.9);
+            border: 2px dashed rgba($color02, 0.8);
+            border-radius: $radius-md;
+            padding: 0.85rem 1rem;
+            color: $color02;
+            font-family: $font2;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            &:hover {
+              border-color: $color02;
+              background: rgba($color01, 0.1);
+              box-shadow: 0 0 0 3px rgba($color02, 0.1);
+            }
+          }
+        }
+      }
+
+      .submit-btn {
+        margin-top: 0.5rem;
+        background: $primary;
+        color: $color05;
+        border: none;
+        padding: 0.85rem 1.5rem;
+        border-radius: $radius-md;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.1s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
