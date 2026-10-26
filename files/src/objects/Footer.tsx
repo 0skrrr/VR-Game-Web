@@ -1,7 +1,7 @@
 import React from 'react';
 import { useT } from '@/hooks/useTranslationProxy';
+import { EU } from 'country-flag-icons/react/3x2';
 import './Footer.scss';
-import euflag from '../images/euflag.jpg';
 
 export const Footer: React.FC = () => {
     const { t } = useT();
@@ -28,7 +28,9 @@ export const Footer: React.FC = () => {
                     </div>
 
                     <div className="footer-brand-col">
-                        <img className="euflag" src={euflag} alt="Funded by the European Union" />
+                        <div className="euflag-wrapper">
+                            <EU className="euflag-svg" />
+                        </div>
                         <div className="eu-funding-caption">
                             Co-funded by the Erasmus+ Programme of the European Union
                         </div>

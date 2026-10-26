@@ -16,7 +16,7 @@ $breakpoints: (
 }
 
 @mixin glass-card {
-  background: rgba($surface-dark, 0.7);
+  background: rgba($surface-dark, 1);
   backdrop-filter: blur(12px);
   border: 1px solid rgba($text-light, 0.1);
   border-radius: $radius-lg;

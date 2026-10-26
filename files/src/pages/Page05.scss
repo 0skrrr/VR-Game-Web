@@ -10,15 +10,21 @@
   margin: 0 auto;
   width: 100%;
   overflow-x: hidden;
+  box-sizing: border-box;
 
   @include respond-to('md') {
+    gap: 3.5rem;
+    padding-top: 4rem;
+  }
+
+  @include respond-to('lg') {
     gap: 4rem;
-    padding-top: 6rem;
+    padding-top: 5rem;
   }
 
   .page-05-header {
     text-align: center;
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -26,27 +32,18 @@
     padding: 0 0.5rem;
 
     h2 {
-      font-size: 2.1rem;
+      font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
       font-weight: 800;
-      color: $text-light;
+      color: $text;
       font-family: $font1;
       letter-spacing: -0.025em;
       line-height: 1.2;
-
-      @include respond-to('md') {
-        font-size: 3.5rem;
-      }
     }
 
     p {
-      color: $color03;
-      font-size: 1rem;
-      line-height: 1.5;
-
-      @include respond-to('md') {
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
+      color: $text-dim;
+      font-size: clamp(0.95rem, 1vw + 0.5rem, 1.1rem);
+      line-height: 1.55;
     }
   }
 
@@ -64,10 +61,14 @@
 
   .contact-card, .partners-container {
     @include glass-card;
-    padding: 1.5rem;
-    background-color: $color05;
-    border: 2px solid rgba($color02, 1);
+    padding: 1.25rem;
+    background-color: $background;
+    border: 2px solid rgba($secondary, 1);
     width: 100%;
+
+    @include respond-to('sm') {
+      padding: 1.75rem;
+    }
 
     @include respond-to('md') {
       padding: 2.5rem;
@@ -75,9 +76,9 @@
   }
 
   .section-title {
-    font-size: 1.2rem;
+    font-size: clamp(1.15rem, 1vw + 0.8rem, 1.35rem);
     font-weight: 700;
-    color: $text-light;
+    color: $text;
     font-family: $font1;
     margin-bottom: 1.25rem;
     display: flex;
@@ -85,7 +86,6 @@
     gap: 0.5rem;
 
     @include respond-to('md') {
-      font-size: 1.35rem;
       margin-bottom: 1.5rem;
     }
   }
@@ -110,9 +110,9 @@
     }
 
     &.error {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: rgba($error, 0.15);
+      color: $error;
+      border: 1px solid rgba($error, 0.3);
     }
   }
 
@@ -131,39 +131,34 @@
       gap: 0.35rem;
 
       label {
-        font-size: 0.8rem;
+        font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
         font-weight: 600;
-        color: $color03;
-
-        @include respond-to('md') {
-          font-size: 0.85rem;
-        }
+        color: $text-dim;
       }
 
       input, textarea {
-        background: rgba($color05, 0.8);
-        border: 2px solid rgba($color02, 0.8);
+        background: rgba($background, 0.8);
+        border: 2px solid rgba($secondary, 0.8);
         border-radius: $radius-md;
         padding: 0.65rem 0.85rem;
-        color: $text-light;
+        color: $text;
         font-family: $font2;
-        font-size: 0.9rem;
+        font-size: clamp(0.875rem, 0.5vw + 0.75rem, 0.95rem);
         outline: none;
         width: 100%;
         transition: border-color 0.2s, box-shadow 0.2s;
 
         @include respond-to('md') {
           padding: 0.75rem 1rem;
-          font-size: 0.95rem;
         }
 
         &:focus {
-          border-color: $color02;
-          box-shadow: 0 0 0 3px rgba($color02, 0.2);
+          border-color: $secondary;
+          box-shadow: 0 0 0 3px rgba($secondary, 0.2);
         }
 
         &::placeholder {
-          color: rgba($color03, 0.5);
+          color: $text-dim;
         }
       }
 
@@ -180,7 +175,7 @@
       padding: 0.75rem 1.25rem;
       border-radius: $radius-md;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: clamp(0.85rem, 0.5vw + 0.7rem, 0.95rem);
       cursor: pointer;
       width: 100%;
       transition: opacity 0.2s, transform 0.1s;
@@ -188,7 +183,6 @@
       @include respond-to('md') {
         margin-top: 0.5rem;
         padding: 0.85rem 1.5rem;
-        font-size: 0.95rem;
         width: auto;
       }
 
@@ -220,8 +214,8 @@
       display: flex;
       align-items: flex-start;
       gap: 0.85rem;
-      background: rgba($color05, 0.6);
-      border: 1px solid rgba($color02, 0.6);
+      background: rgba($background, 0.6);
+      border: 1px solid rgba($secondary, 0.6);
       padding: 0.85rem 1rem;
       border-radius: $radius-md;
       transition: transform 0.2s, background 0.2s;
@@ -233,36 +227,28 @@
 
       &:hover {
         transform: translateX(4px);
-        background: rgba($color05, 0.9);
+        background: rgba($background, 0.9);
       }
 
       .partner-flag {
-        font-size: 1.35rem;
+        font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem);
         line-height: 1;
-
-        @include respond-to('md') {
-          font-size: 1.5rem;
-        }
+        flex-shrink: 0;
       }
 
       .partner-country {
-        font-size: 0.9rem;
+        font-size: clamp(0.85rem, 0.5vw + 0.75rem, 0.95rem);
         font-weight: 700;
-        color: $text-light;
+        color: $text;
         font-family: $font1;
-
-        @include respond-to('md') {
-          font-size: 0.95rem;
-        }
       }
 
       .partner-role {
-        font-size: 0.8rem;
-        color: $color03;
+        font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
+        color: $text-dim;
         margin-top: 0.15rem;
 
         @include respond-to('md') {
-          font-size: 0.85rem;
           margin-top: 0.2rem;
         }
       }
@@ -273,8 +259,8 @@
     @include glass-card;
     padding: 1.25rem;
     margin-top: 0.5rem;
-    background-color: $color05;
-    border: 2px solid rgba($color02, 1);
+    background-color: $background;
+    border: 2px solid rgba($secondary, 1);
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
@@ -292,33 +278,31 @@
     }
 
     .eu-ref-badge {
-      background: rgba($primary, 0.2);
-      border: 1px solid rgba($primary, 0.4);
-      color: lighten($primary, 15%);
+      background: rgba($secondary, 0.1);
+      border: 1px solid rgba($secondary, 0.3);
+      color: $text;
       padding: 0.4rem 0.75rem;
       border-radius: $radius-md;
       font-family: monospace;
-      font-size: 0.75rem;
+      font-size: clamp(0.7rem, 0.3vw + 0.65rem, 0.8rem);
       font-weight: bold;
       white-space: normal;
       word-break: break-all;
 
       @include respond-to('md') {
         padding: 0.5rem 1rem;
-        font-size: 0.8rem;
         white-space: nowrap;
         word-break: normal;
       }
     }
 
     .eu-disclaimer-text {
-      font-size: 0.7rem;
-      color: $color03;
-      line-height: 1.4;
+      font-size: clamp(0.65rem, 0.3vw + 0.6rem, 0.75rem);
+      color: $text-dim;
+      line-height: 1.45;
       max-width: 750px;
 
       @include respond-to('md') {
-        font-size: 0.75rem;
         line-height: 1.5;
       }
     }

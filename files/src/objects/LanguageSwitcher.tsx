@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useT } from '@/hooks/useTranslationProxy';
+import { GB, CZ, HR, AL, TR, PT, SK } from 'country-flag-icons/react/3x2';
 import './LanguageSwitcher.scss';
 
 interface Language {
     code: string;
     label: string;
-    flag: string;
+    FlagComponent: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 }
 
 export const LanguageSwitcher: React.FC = () => {
@@ -14,13 +15,13 @@ export const LanguageSwitcher: React.FC = () => {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const languages: Language[] = [
-        { code: 'en', label: 'English', flag: '🇬🇧' },
-        { code: 'cz', label: 'Čeština', flag: '🇨🇿' },
-        { code: 'hr', label: 'Hrvatski', flag: '🇭🇷' },
-        { code: 'sq', label: 'Shqip', flag: '🇦🇱' },
-        { code: 'tr', label: 'Türkçe', flag: '🇹🇷' },
-        { code: 'pt', label: 'Português', flag: '🇵🇹' },
-        { code: 'sk', label: 'Slovenčina', flag: '🇸🇰' },
+        { code: 'en', label: 'English', FlagComponent: GB },
+        { code: 'cz', label: 'Čeština', FlagComponent: CZ },
+        { code: 'hr', label: 'Hrvatski', FlagComponent: HR },
+        { code: 'sq', label: 'Shqip', FlagComponent: AL },
+        { code: 'tr', label: 'Türkçe', FlagComponent: TR },
+        { code: 'pt', label: 'Português', FlagComponent: PT },
+        { code: 'sk', label: 'Slovenčina', FlagComponent: SK },
     ];
 
     const currentLangCode = i18n.language ? i18n.language.substring(0, 2) : 'en';
@@ -31,7 +32,6 @@ export const LanguageSwitcher: React.FC = () => {
         setIsOpen(false);
     };
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -42,6 +42,8 @@ export const LanguageSwitcher: React.FC = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    const CurrentFlagIcon = currentLang.FlagComponent;
+
     return (
         <div className="language-dropdown-container" ref={dropdownRef}>
             <button
@@ -51,24 +53,31 @@ export const LanguageSwitcher: React.FC = () => {
                 aria-expanded={isOpen}
                 aria-label="Select language"
             >
-                <span className="lang-flag">{currentLang.flag}</span>
+                <div className="lang-flag-wrapper">
+                    <CurrentFlagIcon className="lang-flag-svg" />
+                </div>
                 <span className="lang-code">{currentLang.code.toUpperCase()}</span>
                 <span className={`arrow-icon ${isOpen ? 'open' : ''}`}>▼</span>
             </button>
 
             {isOpen && (
                 <div className="lang-dropdown-menu">
-                    {languages.map((lang) => (
-                        <button
-                            type="button"
-                            key={lang.code}
-                            className={`lang-option ${currentLangCode === lang.code ? 'active' : ''}`}
-                            onClick={() => handleSelect(lang.code)}
-                        >
-                            <span className="lang-flag">{lang.flag}</span>
-                            <span className="lang-name">{lang.label}</span>
-                        </button>
-                    ))}
+                    {languages.map((lang) => {
+                        const FlagIcon = lang.FlagComponent;
+                        return (
+                            <button
+                                type="button"
+                                key={lang.code}
+                                className={`lang-option ${currentLangCode === lang.code ? 'active' : ''}`}
+                                onClick={() => handleSelect(lang.code)}
+                            >
+                                <div className="lang-flag-wrapper">
+                                    <FlagIcon className="lang-flag-svg" />
+                                </div>
+                                <span className="lang-name">{lang.label}</span>
+                            </button>
+                        );
+                    })}
                 </div>
             )}
         </div>

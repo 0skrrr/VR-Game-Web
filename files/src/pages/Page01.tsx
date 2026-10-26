@@ -12,7 +12,7 @@ export default function Page01() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        gsap.from('.hero-banner, .stats-container, .featured-grid, .news-section, .eu-banner-box', {
+        gsap.from('.hero-banner, .hero-logo-container, .stats-container', {
             opacity: 0,
             y: 30,
             duration: 0.8,
@@ -23,7 +23,7 @@ export default function Page01() {
 
     return (
         <div ref={containerRef} className="page-01 page-container">
-            {/* Hero Wrapper containing Hero Banner and Logo side-by-side (Logo on right) */}
+            {/* Hero Wrapper containing Hero Banner and Logo */}
             <div className="hero-wrapper">
                 <section className="hero-banner">
                     <h1>{t.heroTitle}</h1>
@@ -52,7 +52,6 @@ export default function Page01() {
                     <span className="stat-label">{t.statTrained || 'Trained Teachers & Students'}</span>
                 </div>
             </section>
-
         </div>
     );
 }

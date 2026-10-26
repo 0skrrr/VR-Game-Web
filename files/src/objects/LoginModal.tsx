@@ -21,7 +21,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
         setLoading(true);
 
         try {
-            // Attempt to authenticate against your backend API
             const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -36,9 +35,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
                 throw new Error('Server rejected credentials');
             }
         } catch {
-            // Fallback for local development if backend server isn't running yet
             if (username === 'admin' && password === 'vetvr2026') {
-                // Store a mock session cookie for local testing
                 document.cookie = "session_token=mock_admin_token; path=/; max-age=86400; SameSite=Strict";
                 onLoginSuccess();
                 onClose();

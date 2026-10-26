@@ -4,43 +4,44 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba($color03, 0.6);
+  background: rgba($primary, 0.6);
   backdrop-filter: blur(6px);
   z-index: 1000;
   @include flex-center;
   padding: 1rem;
+  box-sizing: border-box;
 
   .modal-card {
     @include glass-card;
     width: 100%;
     max-width: 420px;
-    padding: 2.5rem;
-    background-color: $color05;
-    border: 2px solid rgba($color02, 1);
+    padding: clamp(1.5rem, 3vw + 1rem, 2.5rem);
+    background-color: $background;
+    border: 2px solid rgba($secondary, 1);
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 
     h3 {
       font-family: $font1;
-      font-size: 1.5rem;
+      font-size: clamp(1.25rem, 1.5vw + 0.8rem, 1.5rem);
       font-weight: 800;
-      color: $color02;
+      color: $text;
     }
 
     p {
-      font-size: 0.9rem;
-      color: $color03;
+      font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.9rem);
+      color: $text-dim;
       line-height: 1.5;
     }
 
     .error-msg {
       padding: 0.75rem;
-      background: rgba(239, 68, 68, 0.15);
-      color: #b23b4f;
-      border: 1px solid rgba(239, 68, 68, 0.3);
+      background: rgba($error, 0.15);
+      color: $error;
+      border: 1px solid rgba($error, 0.3);
       border-radius: $radius-md;
-      font-size: 0.85rem;
+      font-size: clamp(0.8rem, 0.4vw + 0.7rem, 0.85rem);
       font-weight: 600;
     }
 
@@ -50,22 +51,24 @@
       gap: 1rem;
 
       input {
-        background: rgba($color05, 0.9);
-        border: 2px solid rgba($color02, 0.8);
+        background: rgba($background, 0.9);
+        border: 2px solid rgba($secondary, 0.8);
         border-radius: $radius-md;
         padding: 0.75rem 1rem;
-        color: $color02;
+        color: $text;
         font-family: $font2;
-        font-size: 0.95rem;
+        font-size: clamp(0.875rem, 0.5vw + 0.75rem, 0.95rem);
         outline: none;
+        width: 100%;
+        box-sizing: border-box;
 
         &:focus {
-          border-color: $color02;
-          box-shadow: 0 0 0 3px rgba($color02, 0.2);
+          border-color: $secondary;
+          box-shadow: 0 0 0 3px rgba($secondary, 0.2);
         }
 
         &::placeholder {
-          color: rgba($color03, 0.5);
+          color: $text-dim;
         }
       }
 
@@ -79,24 +82,24 @@
           padding: 0.75rem;
           border-radius: $radius-md;
           font-weight: 700;
-          font-size: 0.9rem;
+          font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.9rem);
           cursor: pointer;
           transition: opacity 0.2s ease;
         }
 
         .cancel-btn {
           background: transparent;
-          border: 2px solid rgba($color02, 0.4);
-          color: $color02;
+          border: 2px solid rgba($secondary, 0.4);
+          color: $text;
 
           &:hover {
-            background: rgba($color02, 0.1);
+            background: rgba($secondary, 0.1);
           }
         }
 
         .submit-btn {
           background: $primary;
-          color: $color05;
+          color: $background;
           border: none;
 
           &:hover {

@@ -7,146 +7,156 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 3rem;
+  gap: 2rem;
   width: 100%;
-  overflow-x: hidden; // Prevents any side-scrolling
+  overflow-x: hidden;
+  box-sizing: border-box;
 
   @include respond-to('md') {
+    gap: 3rem;
+  }
+
+  @include respond-to('lg') {
     gap: 4rem;
   }
 
   .hero-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     width: 100%;
     padding-top: 1rem;
-    position: relative;
-    border-radius: $radius-lg;
 
-    @include respond-to('lg') { // Target large desktop screens for the side image layout
+    @include respond-to('md') {
       flex-direction: row;
-      align-items: center;
       justify-content: space-between;
-      gap: 3rem;
+      gap: 2.5rem;
+    }
+
+    @include respond-to('lg') {
       padding-top: 2rem;
+      gap: 3.5rem;
+    }
+
+    .hero-banner {
+      text-align: start;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      z-index: 2;
+
+      @include respond-to('md') {
+        width: 55%;
+        gap: 1.25rem;
+      }
+
+      h1 {
+        font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+        font-weight: 800;
+        color: $text;
+        line-height: 1.15;
+        font-family: $font1;
+        letter-spacing: -0.02em;
+      }
+
+      .mission-statement {
+        font-size: clamp(0.95rem, 1.2vw + 0.5rem, 1.15rem);
+        color: $text-dim;
+        line-height: 1.55;
+        width: 100%;
+
+        @include respond-to('md') {
+          max-width: 90%;
+        }
+      }
+
+      .hero-cta-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+        width: 100%;
+
+        @include respond-to('sm') {
+          width: auto;
+        }
+      }
     }
 
     .hero-logo-container {
-      display: none; // Completely hidden on phones and tablets
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 280px;
 
-      @include respond-to('lg') { // Only shown on standard desktop PC layouts
-        display: flex;
-        position: relative;
-        width: 50%;
-        height: auto;
+      @include respond-to('sm') {
+        max-width: 360px;
+      }
+
+      @include respond-to('md') {
+        width: 45%;
+        max-width: none;
         justify-content: flex-end;
       }
 
       .hero-logo {
-        width: 45rem;
-        max-width: none;
+        width: 100%;
+        max-width: 450px;
         height: auto;
         object-fit: contain;
-        position: absolute;
-
-        // Moved higher up and right-aligned cleanly on desktop
-        right: -18rem;
-        top: -8rem; // Pushed higher up as requested
-        opacity: 1;
       }
-    }
-  }
-
-  .hero-banner {
-    text-align: start;
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 1.25rem;
-    z-index: 2; // Ensures text stays completely above background elements
-
-    h1 {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: $text-light;
-      line-height: 1.2;
-      font-family: $font1;
-
-      @include respond-to('md') {
-        font-size: 5rem;
-      }
-    }
-
-    .mission-statement {
-      font-size: 1rem;
-      color: $color03;
-      line-height: 1.5;
-      max-width: 100%;
-
-      @include respond-to('lg') {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        max-width: 42vw;
-      }
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 0.5rem;
     }
   }
 
   .stats-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1rem;
-    margin: 2rem 0 0 0;
+    margin-top: 1rem;
     width: 100%;
 
+    @include respond-to('sm') {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
     @include respond-to('md') {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1.5rem;
-      margin: 8rem 0 0 0;
+      margin-top: 2.5rem;
     }
 
     .stat-card {
       @include glass-card;
-      padding: 1.5rem;
+      padding: 1.25rem 1rem;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      background-color: $color05;
-      border: 2px solid rgba($color02, 1);
+      justify-content: center;
+      align-items: center;
+      gap: 0.35rem;
+      background-color: $background;
+      border: 2px solid rgba($secondary, 1);
 
       @include respond-to('md') {
-        padding: 2rem;
+        padding: 1.75rem 1.25rem;
       }
 
       .stat-number {
-        font-size: 2rem;
+        font-size: clamp(2rem, 3vw + 1rem, 2.75rem);
         font-weight: 800;
-        color: $color02;
-
-        @include respond-to('md') {
-          font-size: 2.5rem;
-        }
+        color: $secondary;
+        line-height: 1;
       }
 
       .stat-label {
-        font-size: 0.85rem;
-        color: $color03;
-        font-weight: 500;
-
-        @include respond-to('md') {
-          font-size: 0.9rem;
-        }
+        font-size: clamp(0.8rem, 0.8vw + 0.5rem, 0.95rem);
+        color: $text-dim;
+        font-weight: 600;
+        line-height: 1.3;
       }
     }
   }

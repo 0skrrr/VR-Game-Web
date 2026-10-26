@@ -2,10 +2,10 @@
 @use '../styles/mixins' as *;
 
 .global-site-footer {
-  background: $bg-dark;
-  border-top: 2px solid rgba($color02, 1);
+  background: $background;
+  border-top: 2px solid rgba($secondary, 1);
   padding: 3rem 1rem 2rem 1rem;
-  color: $color03;
+  color: $text-dim;
   margin-top: 4rem;
   width: 100%;
   box-sizing: border-box;
@@ -26,7 +26,6 @@
       gap: 3rem;
     }
 
-    // Top section: Multi-column grid
     .footer-main-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -38,7 +37,6 @@
         gap: 2.5rem;
       }
 
-      // Left column: Branding, metadata & legal EU disclaimer
       .footer-info-col {
         display: flex;
         flex-direction: column;
@@ -53,7 +51,7 @@
           .eu-badge {
             background: $primary;
             color: #ffffff;
-            font-size: 0.7rem;
+            font-size: clamp(0.65rem, 0.3vw + 0.6rem, 0.75rem);
             font-weight: 700;
             padding: 0.3rem 0.75rem;
             border-radius: $radius-md;
@@ -61,41 +59,34 @@
             letter-spacing: 0.05em;
 
             @include respond-to('md') {
-              font-size: 0.75rem;
               padding: 0.35rem 0.85rem;
             }
           }
 
           .ref-number {
-            font-size: 0.8rem;
+            font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
             font-family: $font2;
-            color: $text-light;
+            color: $text;
             font-weight: 600;
-
-            @include respond-to('md') {
-              font-size: 0.85rem;
-            }
           }
         }
 
         .eu-disclaimer-text {
-          font-size: 0.8rem;
-          line-height: 1.5;
-          color: $color03;
+          font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
+          line-height: 1.55;
+          color: $text-dim;
 
           @include respond-to('md') {
-            font-size: 0.85rem;
             line-height: 1.6;
           }
         }
       }
 
-      // Right column: Official EU Flag & Granting Authority layout
       .footer-brand-col {
         @include glass-card;
         padding: 1.25rem;
-        background-color: $color05;
-        border: 2px solid rgba($color02, 1);
+        background-color: $background;
+        border: 2px solid rgba($secondary, 1);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -109,34 +100,40 @@
           gap: 1.25rem;
         }
 
-        .euflag {
-          width: 80px;
-          height: auto;
-          object-fit: contain;
+        .euflag-wrapper {
+          width: 85px;
+          height: 55px;
           flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
           @include respond-to('sm') {
-            width: 90px;
+            width: 95px;
+            height: 62px;
+          }
+
+          .euflag-svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
         }
 
         .eu-funding-caption {
-          font-size: 0.75rem;
-          color: $color03;
-          line-height: 1.4;
+          font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.8rem);
+          color: $text-dim;
+          line-height: 1.45;
           font-weight: 500;
-
-          @include respond-to('sm') {
-            font-size: 0.8rem;
-          }
         }
       }
     }
 
-    // Bottom bar: Navigation link & Copyright statement
     .footer-bottom-bar {
-      border-top: 1px solid rgba($color02, 0.6);
+      border-top: 1px solid rgba($secondary, 0.6);
       padding-top: 1.5rem;
       display: flex;
       flex-direction: column;
@@ -157,15 +154,11 @@
         align-items: center;
 
         .social-link {
-          font-size: 0.85rem;
+          font-size: clamp(0.8rem, 0.4vw + 0.7rem, 0.9rem);
           color: $primary;
           text-decoration: none;
           font-weight: 600;
           transition: opacity 0.2s ease;
-
-          @include respond-to('md') {
-            font-size: 0.9rem;
-          }
 
           &:hover {
             opacity: 0.8;
@@ -175,11 +168,10 @@
       }
 
       .copyright {
-        font-size: 0.8rem;
-        color: $color03;
+        font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
+        color: $text-dim;
 
         @include respond-to('md') {
-          font-size: 0.85rem;
           text-align: right;
         }
       }

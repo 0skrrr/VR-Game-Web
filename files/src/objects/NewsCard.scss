@@ -4,8 +4,8 @@
 .news-card {
   @include glass-card;
   overflow: hidden;
-  background-color: $color05;
-  border: 2px solid rgba($color02, 1);
+  background-color: $background;
+  border: 2px solid rgba($secondary, 1);
   transition: transform 0.2s ease, border-color 0.2s ease;
   display: flex;
   flex-direction: column;
@@ -13,16 +13,16 @@
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba($color02, 0.8);
+    border-color: rgba($secondary, 0.8);
   }
 
   .card-image-wrapper {
     position: relative;
     width: 100%;
-    height: 175px;
+    height: 180px;
     overflow: hidden;
 
-    @include respond-to('md') {
+    @include respond-to('sm') {
       height: 200px;
     }
 
@@ -41,9 +41,9 @@
       position: absolute;
       top: 0.75rem;
       right: 0.75rem;
-      background: rgba($color05, 0.9);
+      background: rgba($background, 0.9);
       color: $accent;
-      font-size: 0.7rem;
+      font-size: clamp(0.7rem, 0.5vw + 0.5rem, 0.75rem);
       font-weight: 600;
       padding: 0.2rem 0.6rem;
       border-radius: 2rem;
@@ -53,7 +53,6 @@
       @include respond-to('md') {
         top: 1rem;
         right: 1rem;
-        font-size: 0.75rem;
         padding: 0.25rem 0.75rem;
       }
     }
@@ -72,39 +71,24 @@
     }
 
     .card-date {
-      font-size: 0.75rem;
-      color: $color03;
+      font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.8rem);
+      color: $text-dim;
       font-family: $font2;
-
-      @include respond-to('md') {
-        font-size: 0.8rem;
-      }
     }
 
     h3 {
-      font-size: 1.15rem;
+      font-size: clamp(1.1rem, 1vw + 0.8rem, 1.25rem);
       font-weight: 700;
-      color: $text-light;
+      color: $text;
       font-family: $font1;
       line-height: 1.35;
-
-      @include respond-to('md') {
-        font-size: 1.25rem;
-        line-height: 1.4;
-      }
     }
 
     p {
-      font-size: 0.9rem;
-      color: $color03;
-      line-height: 1.5;
+      font-size: clamp(0.875rem, 0.5vw + 0.75rem, 0.95rem);
+      color: $text-dim;
+      line-height: 1.55;
       margin-top: 0.2rem;
-
-      @include respond-to('md') {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-top: 0.25rem;
-      }
     }
   }
 }

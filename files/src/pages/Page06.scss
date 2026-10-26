@@ -7,7 +7,15 @@
   align-items: center;
   max-width: 900px;
   margin: 0 auto;
-  gap: 3rem;
+  gap: 2.5rem;
+  width: 100%;
+  color: $text;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  @include respond-to('md') {
+    gap: 3.5rem;
+  }
 
   .page-06-header {
     text-align: center;
@@ -15,50 +23,104 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 0 0.5rem;
 
     h2 {
-      font-size: 2.75rem;
+      font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
       font-weight: 800;
-      color: $text-light;
+      color: $text;
       font-family: $font1;
       line-height: 1.2;
-
-      @include respond-to('md') {
-        font-size: 3.5rem;
-      }
     }
 
     p {
-      font-size: 1.1rem;
-      color: $color03;
+      font-size: clamp(0.95rem, 1vw + 0.5rem, 1.1rem);
+      color: $text-dim;
       line-height: 1.6;
+    }
+
+    .tab-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+
+      @include respond-to('sm') {
+        gap: 1rem;
+      }
+
+      .nav-btn {
+        background: $background;
+        color: $text-dim;
+        border: 2px solid rgba($secondary, 0.3);
+        padding: 0.6rem 1rem;
+        border-radius: $radius-md;
+        font-weight: 700;
+        font-size: clamp(0.8rem, 0.4vw + 0.7rem, 0.9rem);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        @include respond-to('md') {
+          padding: 0.75rem 1.5rem;
+        }
+
+        &:hover {
+          color: $text;
+          border-color: $secondary;
+        }
+
+        &.active {
+          background: $secondary;
+          color: $background;
+          border-color: transparent;
+          box-shadow: 0 4px 15px rgba($primary, 0.2);
+        }
+      }
     }
   }
 
   .admin-form-card {
     @include glass-card;
     width: 100%;
-    padding: 2.5rem;
-    background-color: $color05;
-    border: 2px solid rgba($color02, 1);
+    padding: 1.25rem;
+    background-color: rgba($background, 0.9);
+    border: 2px solid rgba($secondary, 0.3);
+
+    @include respond-to('sm') {
+      padding: 1.75rem;
+    }
+
+    @include respond-to('md') {
+      padding: 2.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.2rem, 1.5vw + 0.8rem, 1.5rem);
+      font-family: $font1;
+      color: $text;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid rgba($secondary, 0.1);
+      padding-bottom: 0.75rem;
+    }
 
     .status-alert {
-      padding: 0.85rem 1rem;
+      padding: 0.75rem 0.85rem;
       border-radius: $radius-md;
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 0.4vw + 0.7rem, 0.9rem);
       margin-bottom: 1.25rem;
       font-weight: 600;
 
       &.success {
-        background: rgba($color01, 0.2);
-        color: $color02;
-        border: 1px solid rgba($color01, 0.5);
+        background: rgba($success, 0.2);
+        color: $secondary;
+        border: 1px solid rgba($success, 0.5);
       }
 
       &.error {
-        background: rgba(239, 68, 68, 0.15);
-        color: #b23b4f;
-        border: 1px solid rgba(239, 68, 68, 0.3);
+        background: rgba($error, 0.15);
+        color: $error;
+        border: 1px solid rgba($error, 0.3);
       }
     }
 
@@ -73,50 +135,48 @@
         gap: 0.4rem;
 
         label {
-          font-size: 0.85rem;
+          font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
           font-weight: 700;
-          color: $color03;
+          color: $text;
         }
 
         input[type="text"], select, textarea {
-          background: rgba($color05, 0.9);
-          border: 2px solid rgba($color02, 0.8);
+          background: rgba($background, 0.9);
+          border: 2px solid rgba($secondary, 0.4);
           border-radius: $radius-md;
-          padding: 0.75rem 1rem;
-          color: $color02;
+          padding: 0.65rem 0.85rem;
+          color: $text;
           font-family: $font2;
-          font-size: 0.95rem;
+          font-size: clamp(0.875rem, 0.5vw + 0.75rem, 0.95rem);
           outline: none;
           transition: border-color 0.2s, box-shadow 0.2s;
 
+          @include respond-to('md') {
+            padding: 0.75rem 1rem;
+          }
+
           &:focus {
-            border-color: $color02;
-            box-shadow: 0 0 0 3px rgba($color02, 0.2);
+            border-color: $secondary;
+            box-shadow: 0 0 0 3px rgba($secondary, 0.2);
           }
 
           &::placeholder {
-            color: rgba($color03, 0.5);
+            color: $text-dim;
           }
-        }
-
-        select {
-          cursor: pointer;
         }
 
         textarea {
           resize: vertical;
         }
 
-        /* Styled Custom File Upload Component */
+        /* File Upload Styles */
         .file-upload-wrapper {
           position: relative;
           width: 100%;
 
-          /* Hide original ugly file input */
           input[type="file"] {
             position: absolute;
-            left: 0;
-            top: 0;
+            inset: 0;
             opacity: 0;
             width: 100%;
             height: 100%;
@@ -124,18 +184,16 @@
             z-index: 2;
           }
 
-          /* Custom styled button representation */
           .file-upload-btn {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            background: rgba($color05, 0.9);
-            border: 2px dashed rgba($color02, 0.8);
+            background: rgba($background, 0.9);
+            border: 2px dashed rgba($secondary, 0.6);
             border-radius: $radius-md;
-            padding: 0.85rem 1rem;
-            color: $color02;
+            padding: 0.65rem 0.85rem;
+            color: $text;
             font-family: $font2;
-            font-size: 0.95rem;
+            font-size: clamp(0.875rem, 0.5vw + 0.75rem, 0.95rem);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -144,10 +202,54 @@
             overflow: hidden;
             text-overflow: ellipsis;
 
+            @include respond-to('md') {
+              padding: 0.75rem 1rem;
+            }
+
             &:hover {
-              border-color: $color02;
-              background: rgba($color01, 0.1);
-              box-shadow: 0 0 0 3px rgba($color02, 0.1);
+              border-color: $secondary;
+              background: rgba($success, 0.1);
+            }
+          }
+        }
+
+        /* Image Preview Box */
+        .image-preview-container {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 0.5rem;
+          background: rgba($background, 0.5);
+          padding: 0.75rem;
+          border-radius: $radius-md;
+          border: 1px solid rgba($secondary, 0.2);
+
+          .image-preview {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid rgba($secondary, 0.3);
+
+            @include respond-to('md') {
+              width: 80px;
+              height: 80px;
+            }
+          }
+
+          .remove-image-btn {
+            background: rgba($error, 0.15);
+            color: $error;
+            border: 1px solid rgba($error, 0.3);
+            padding: 0.45rem 0.7rem;
+            border-radius: $radius-md;
+            font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+
+            &:hover {
+              background: rgba($error, 0.25);
             }
           }
         }
@@ -156,17 +258,22 @@
       .submit-btn {
         margin-top: 0.5rem;
         background: $primary;
-        color: $color05;
+        color: $background;
         border: none;
-        padding: 0.85rem 1.5rem;
+        padding: 0.75rem 1.25rem;
         border-radius: $radius-md;
         font-weight: 700;
-        font-size: 0.95rem;
+        font-size: clamp(0.85rem, 0.5vw + 0.7rem, 0.95rem);
         cursor: pointer;
         transition: opacity 0.2s, transform 0.1s;
 
+        @include respond-to('md') {
+          padding: 0.85rem 1.5rem;
+        }
+
         &:hover {
-          opacity: 0.9;
+          background: $primary-shade;
+          opacity: 0.95;
         }
 
         &:active {
@@ -179,5 +286,148 @@
         }
       }
     }
+
+    .inquiries-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .inquiry-item {
+        background: rgba($background, 0.6);
+        border: 1px solid rgba($secondary, 0.2);
+        padding: 1rem;
+        border-radius: $radius-md;
+
+        @include respond-to('md') {
+          padding: 1.25rem;
+        }
+
+        .inquiry-meta {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          margin-bottom: 0.5rem;
+          font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.95rem);
+          color: $text;
+
+          @include respond-to('sm') {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          span {
+            color: $text-dim;
+            font-size: clamp(0.75rem, 0.3vw + 0.65rem, 0.85rem);
+          }
+        }
+
+        em {
+          color: $secondary;
+          font-size: clamp(0.8rem, 0.4vw + 0.7rem, 0.9rem);
+          display: block;
+        }
+
+        p {
+          font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.95rem);
+          color: $text-dim;
+          line-height: 1.5;
+          margin-top: 0.5rem;
+        }
+      }
+    }
   }
+}
+
+.article-manage-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .edit-article-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    input[type="text"], textarea {
+      background: rgba($background, 0.9);
+      border: 2px solid rgba($secondary, 0.4);
+      border-radius: $radius-md;
+      padding: 0.6rem 0.8rem;
+      color: $text;
+      font-family: $font2;
+      font-size: clamp(0.85rem, 0.4vw + 0.75rem, 0.9rem);
+      outline: none;
+
+      &:focus {
+        border-color: $secondary;
+      }
+    }
+  }
+
+  .action-buttons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+
+    @include respond-to('sm') {
+      gap: 0.75rem;
+    }
+
+    .action-btn {
+      padding: 0.4rem 0.85rem;
+      border-radius: $radius-md;
+      font-size: clamp(0.75rem, 0.4vw + 0.65rem, 0.85rem);
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+
+      @include respond-to('md') {
+        padding: 0.45rem 1rem;
+      }
+
+      &.edit-btn {
+        background: $secondary;
+        color: $background;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      &.delete-btn {
+        background: rgba($error, 0.15);
+        color: $error;
+        border: 1px solid rgba($error, 0.3);
+
+        &:hover {
+          background: rgba($error, 0.25);
+        }
+      }
+
+      &.save-btn {
+        background: $primary;
+        color: $background;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      &.cancel-btn {
+        background: rgba($text, 0.1);
+        color: $text;
+
+        &:hover {
+          background: rgba($text, 0.2);
+        }
+      }
+    }
+  }
+}
+
+.empty-notice {
+  color: $text-dim;
 }

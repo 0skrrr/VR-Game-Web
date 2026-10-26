@@ -11,33 +11,41 @@
   src: url(../fonts/Outfit/Outfit-VariableFont_wght.ttf);
 }
 
-
+// Requested Core Colors
+$background: #e6daf5;
+$text: #2E3192;
 $primary: #151320;
 $secondary: #2F3192;
 $accent: #2E3192;
-$bg-dark: #e6daf5;
-$surface-dark: #151320;
-$text-light: #2E3192;
-$text-muted: #e6daf5;
-$color01: #51d0ed;
-$color02: #2E3192;
-$color03: #151320;
-$color04:#2F3192;
-$color05:#e6daf5;
+$error: #b23b4f;
+$success: #51d0ed;
 
+// Automated Variations
+$text-dim: rgba($text, 0.7);
+$primary-shade: #0d0c14;
+$secondary-shade: #1f2165;
+$primary-gradient: linear-gradient(135deg, $primary, $secondary);
 
-//1a111a
-//2a475b
-//529494
-//e3e4d3
-//b23b4f
+// Legacy/Compatibility Variables mapped safely
+$bg-dark: $background;
+$surface-dark: $primary;
+$text-light: $text;
+$text-muted: $background;
 
+// Alternative Palette Option 1 (Reserved)
+// #1a111a
+// #2a475b
+// #529494
+// #e3e4d3
+// #b23b4f
 
+// Alternative Palette Option 2 (Reserved)
 // #C63E96
 // #2F3192
 // #151320
 // #51d0ed
 // #e6daf5
+
 $font-sans: BBHHegarty, system-ui, -apple-system, sans-serif;
 $font1: Outfit, system-ui, -apple-system, sans-serif;
 $font2: Urbanist, system-ui, -apple-system, sans-serif;

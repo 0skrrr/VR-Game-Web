@@ -26,10 +26,19 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            // Any fetch to '/test.php' will be forwarded to your PHP server
             '/test.php': {
                 target: 'http://localhost:8000',
                 changeOrigin: true,
+            },
+            '/uploads': {
+                target: 'http://localhost:8000',
+                changeOrigin: true,
+            },
+            '/api': {
+                target: 'http://localhost:8000',
+                changeOrigin: true,
+                // Rewrites /api/... -> /api.php/api/... so PHP handles API routing directly
+                rewrite: (path) => path.replace(/^\/api/, '/api.php/api'),
             }
         }
     }

@@ -2,13 +2,14 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useT } from '@/hooks/useTranslationProxy';
+import { CZ, HR, AL, TR, PT, SK } from 'country-flag-icons/react/3x2';
 import './Page02.scss';
 
 gsap.registerPlugin(useGSAP);
 
 interface PartnerInfo {
     id: string;
-    code: string;
+    FlagComponent: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
     country: string;
     role: string;
     url: string;
@@ -19,12 +20,12 @@ export default function Page02() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const partners: PartnerInfo[] = [
-        { id: 'cz', code: '🇨🇿', country: t.partnerCzCountry || 'Czech Republic', role: t.partnerCzRole || 'Coordinator & Project Management', url: 'https://example.cz' },
-        { id: 'hr', code: '🇭🇷', country: t.partnerHrCountry || 'Croatia', role: t.partnerHrRole || 'Host Partner & VET Integration', url: 'https://example.hr' },
-        { id: 'al', code: '🇦🇱', country: t.partnerAlCountry || 'Albania', role: t.partnerAlRole || 'Pedagogy & Teacher Guide (WP4)', url: 'https://example.al' },
-        { id: 'tr', code: '🇹🇷', country: t.partnerTrCountry || 'Turkey', role: t.partnerTrRole || 'Mobile Application Development', url: 'https://example.tr' },
-        { id: 'pt', code: '🇵🇹', country: t.partnerPtCountry || 'Portugal', role: t.partnerPtRole || 'Unity & VR Core Development', url: 'https://example.pt' },
-        { id: 'sk', code: '🇸🇰', country: t.partnerSkCountry || 'Slovakia', role: t.partnerSkRole || '3D Modeling & Blender Assets', url: 'https://example.sk' },
+        { id: 'cz', FlagComponent: CZ, country: t.partnerCzCountry || 'Czechia', role: t.partnerCzRole || 'Coordinator & Project Management', url: 'https://example.cz' },
+        { id: 'hr', FlagComponent: HR, country: t.partnerHrCountry || 'Croatia', role: t.partnerHrRole || 'Host Partner & VET Integration', url: 'https://example.hr' },
+        { id: 'al', FlagComponent: AL, country: t.partnerAlCountry || 'Albania', role: t.partnerAlRole || 'Pedagogy & Teacher Guide (WP4)', url: 'https://example.al' },
+        { id: 'tr', FlagComponent: TR, country: t.partnerTrCountry || 'Türkiye', role: t.partnerTrRole || 'Mobile Application Development', url: 'https://example.tr' },
+        { id: 'pt', FlagComponent: PT, country: t.partnerPtCountry || 'Portugal', role: t.partnerPtRole || 'Unity & VR Core Development', url: 'https://example.pt' },
+        { id: 'sk', FlagComponent: SK, country: t.partnerSkCountry || 'Slovakia', role: t.partnerSkRole || '3D Modeling & Blender Assets', url: 'https://example.sk' },
     ];
 
     useGSAP(() => {
@@ -66,15 +67,20 @@ export default function Page02() {
             <div className="partners-section">
                 <h3 className="section-title">{t.consortiumPartnersTitle || 'Consortium Partner Institutions'}</h3>
                 <div className="partners-grid">
-                    {partners.map((p) => (
-                        <a key={p.id} href={p.url} target="_blank" rel="noopener noreferrer" className="partner-card">
-                            <span className="partner-flag">{p.code}</span>
-                            <div className="partner-info">
-                                <h4>{p.country}</h4>
-                                <p>{p.role}</p>
-                            </div>
-                        </a>
-                    ))}
+                    {partners.map((p) => {
+                        const FlagIcon = p.FlagComponent;
+                        return (
+                            <a key={p.id} href={p.url} target="_blank" rel="noopener noreferrer" className="partner-card">
+                                <div className="partner-flag-container">
+                                    <FlagIcon className="partner-flag-svg" />
+                                </div>
+                                <div className="partner-info">
+                                    <h4>{p.country}</h4>
+                                    <p>{p.role}</p>
+                                </div>
+                            </a>
+                        );
+                    })}
                 </div>
             </div>
         </div>
